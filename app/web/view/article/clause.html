@@ -1,0 +1,49 @@
+{include file='common/head'}
+
+<style>
+
+
+</style>
+<div class="layui-body">
+    <blockquote class="layui-elem-quote layui-text" style="border-left:none;">
+        条款协议
+    </blockquote>
+    <!-- 内容主体区域 -->
+
+    <div class="layui-card-body"  style="min-height: 700px;">
+
+        <table class="layui-table">
+            <thead>
+            <tr>
+
+                <th>标题</th>
+
+                <th>操作 </th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            {volist name='data' id='vo'}
+            <tr>
+
+                <td>{$vo.title}</td>
+
+                <td>
+                    <button class="layui-btn layui-btn-sm" onclick="go('{:we7_url(\'article/clause_edit\',[\'genre\'=>$vo.genre])}')">编辑</button>
+
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+<script>
+
+    nav=$('#nav14');nav.addClass("layui-this");nav.parent().parent().addClass('layui-nav-itemed');
+</script>
+
+{include file='common/down'}

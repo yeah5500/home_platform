@@ -1,0 +1,69 @@
+{include file='common/head'}
+
+
+<div class="layui-card">
+<div class="layui-body">
+    <blockquote class="layui-elem-quote layui-text" style="border-left:none;">
+        用户管理
+    </blockquote>
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="layadmin-userfront-formlist">
+        <div class="layui-form-item">
+            <form action="{:we7_url('user/index')}">
+                <div class="layui-inline">
+                    <label class="layui-form-label">关键字搜索</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="search" placeholder="ID,微信名称,电话" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-useradmin" lay-submit lay-filter="search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                        搜索
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- 内容主体区域 -->
+
+    <div class="layui-card-body"  style="min-height: 700px;">
+
+        <table class="layui-table">
+            <thead>
+            <tr>
+
+                <th>ID</th>
+                <th>微信名称</th>
+                <th>头像</th>
+                <th>绑定手机</th>
+                <th>注册时间</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {volist name='data' id='vo'}
+            <tr>
+                <td>{$vo.id}</td>
+                <td>{$vo.nickname}</td>
+                <td><img src="{$vo.avatar_url}" style="width: 50px;height: 50px"></td>
+                <td>{$vo.mobile}</td>
+                <td>{$vo.create_time}</td>
+            </tr>
+            {/volist}
+            </tbody>
+
+        </table>
+        <div style="text-align: center">
+            <div class="layui-box layui-laypage layui-laypage-default" style="display: block;margin-top: 20px;height: 35px;">
+                {$data->render()}
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+
+    nav=$('#nav12');nav.addClass("layui-this");nav.parent().parent().addClass('layui-nav-itemed');
+</script>
+
+{include file='common/down'}

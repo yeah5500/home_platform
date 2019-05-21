@@ -1,0 +1,55 @@
+{include file='common/head'}
+
+<style>
+
+
+</style>
+<div class="layui-body">
+    <blockquote class="layui-elem-quote layui-text" style="border-left:none;">
+        添加图片
+    </blockquote>
+    <!-- 内容主体区域 -->
+    <div style="padding: 15px;">
+        <form class="layui-form" method="post" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">图片链接:</label>
+                <div class="layui-input-inline" style="width: 800px;">
+                    <input type="url" name="image_url" autocomplete="off" placeholder="请输入" class="layui-input" >
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"></label>
+                <div class="layui-input-inline">
+                    <div class="layui-upload">
+                        <button type="button" class="layui-btn" id="test1">上传图片</button>
+                        <div class="layui-upload-list">
+                            <img class="layui-upload-img" id="demo1" src="" style="max-width: 500px;">
+                            <p id="demoText"></p>
+                        </div>
+                        <input type="hidden" name="image" value="" id="image">
+                    </div>
+                </div>
+
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">排序:</label>
+                <div class="layui-input-inline">
+                    <input type="number" name="sort" min="1" autocomplete="off" placeholder="数字越小越靠前" class="layui-input" >
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label"></label>
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" lay-filter="submit">添加</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+
+    nav=$('#nav1');nav.addClass("layui-this");nav.parent().parent().addClass('layui-nav-itemed');
+</script>
+
+{include file='common/down'}

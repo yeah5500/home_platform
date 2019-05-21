@@ -1,0 +1,56 @@
+{include file='common/head'}
+
+<style>
+
+
+</style>
+<div class="layui-body">
+    <blockquote class="layui-elem-quote layui-text" style="border-left:none;">
+        轮播图
+    </blockquote>
+    <!-- 内容主体区域 -->
+
+    <div class="layui-card-body"  style="min-height: 700px;">
+        <button class="layui-btn layuiadmin-btn-useradmin layui-btn-sm" onclick="go('{:we7_url(\'banner/add\')}')" >添加图片</button>
+        <table class="layui-table">
+            <thead>
+            <tr>
+
+                <th>ID</th>
+                <th>图片</th>
+                <th>排序</th>
+                <th>添加时间</th>
+                <th>操作 </th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+           {volist name='data' id='vo'}
+           <tr>
+               <td>{$vo.id}</td>
+               <td><img src="{$vo.image}" style="max-width: 150px;max-height: 150px"></td>
+               <td>{$vo.sort}</td>
+               <td>{$vo.create_time}</td>
+               <td>
+                   <button class="layui-btn layui-btn-sm" onclick="go('{:we7_url(\'banner/edit\',[\'id\'=>$vo.id])}')">编辑</button>
+                   <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="confirm('{:we7_url(\'banner/delete\')}','您确定删除吗?','3',{id:'{$vo.id}'})"> 删除</button>
+               </td>
+           </tr>
+           {/volist}
+            </tbody>
+
+        </table>
+        <div style="text-align: center">
+            <div class="layui-box layui-laypage layui-laypage-default" style="display: block;margin-top: 20px;height: 35px;">
+                {$data->render()}
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    nav=$('#nav1');nav.addClass("layui-this");nav.parent().parent().addClass('layui-nav-itemed');
+</script>
+
+{include file='common/down'}

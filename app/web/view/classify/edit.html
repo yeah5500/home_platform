@@ -1,0 +1,89 @@
+{include file='common/head'}
+
+<style>
+
+
+</style>
+<div class="layui-body">
+    <blockquote class="layui-elem-quote layui-text" style="border-left:none;">
+        修改分类
+    </blockquote>
+    <!-- 内容主体区域 -->
+    <div style="padding: 15px;">
+        <form class="layui-form" method="post" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">名称:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="title" value="{$data.title}" autocomplete="off" placeholder="请输入分类名称" class="layui-input" >
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">图片链接:</label>
+                <div class="layui-input-inline" style="width: 800px;">
+                    <input type="url" value="{$data.logo}" name="image_url" autocomplete="off" placeholder="" class="layui-input" >
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"></label>
+                <div class="layui-input-inline">
+                    <div class="layui-upload">
+                        <button type="button" class="layui-btn" id="test1">上传图片</button>
+                        <div class="layui-upload-list">
+                            <img class="layui-upload-img" width="150" height="150" id="demo1" src="{$data.logo}" style="max-width: 500px;">
+                            <p id="demoText"></p>
+                        </div>
+                        <input type="hidden" name="image" value="{$data.logo}" id="image">
+                        <input type="hidden" name="parent_id" value="{$data.parent_id}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">排序:</label>
+                <div class="layui-input-inline">
+                    <input type="number" name="sort" value="{$data.sort}" autocomplete="off" placeholder="数字越小越靠前" class="layui-input" >
+                </div>
+            </div>
+            <div id="patent">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">预约金额(元):</label>
+                    <div class="layui-input-inline">
+                        <input type="number" name="price" step="0.01"  value="{$data.price}"  autocomplete="off" placeholder="0是免费预约" class="layui-input" >
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">内容概述:</label>
+                    <div class="layui-input-inline" style="width: 800px;">
+                        <textarea class="layui-textarea" name="abstract" lay-verify="content" >{$data.abstract}</textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">内容描述:</label>
+                    <div class="layui-input-inline" style="width: 800px;">
+                        <div id="editor" style="width: 800px;">{$data.content}</div>
+                        <textarea id="text" style="display: none;" name="content"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"></label>
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" lay-filter="submit">修改</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+
+    nav=$('#nav11');nav.addClass("layui-this");nav.parent().parent().addClass('layui-nav-itemed');
+    if("{$data.parent_id}"!=0){
+        $('#patent').show()
+    }else{
+        $('#patent').hide();
+    }
+
+</script>
+
+{include file='common/down'}

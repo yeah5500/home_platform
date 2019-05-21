@@ -1,0 +1,68 @@
+{include file='common/head'}
+<style>
+
+    .layui-form-label{
+        width: 125px;text-align: left;
+    }
+</style>
+
+<div class="layui-body">
+    <blockquote class="layui-elem-quote layui-text" style="border-left:none;">
+        阿里云短信配置
+    </blockquote>
+    <style>
+
+    </style>
+    <!-- 内容主体区域 -->
+    <div style="padding: 15px;">
+        <form class="layui-form" method="post" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">阿里云accessKeyId:</label>
+                <div class="layui-input-inline" style="width: 500px;">
+                    <div class="block-dis">已隐藏点击查看或编辑</div>
+                    <input type="text" name="access_key_id" autocomplete="off" placeholder="请输入阿里云accessKeyId" class="layui-input" value="{$data.access_key_id}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">阿里云accessKeySecre:</label>
+                <div class="layui-input-inline" style="width: 500px;">
+                    <div class="block-dis">已隐藏点击查看或编辑</div>
+                    <input type="text" name="access_key_secret" autocomplete="off" placeholder="请输入阿里云accessKeySecre" class="layui-input" value="{$data.access_key_secret}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">短信签名:</label>
+                <div class="layui-input-inline" style="width: 500px;">
+                    <input type="text" name="sign" autocomplete="off" placeholder="请输入短信签名" class="layui-input" value="{$data.sign}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">模板ID:</label>
+                <div class="layui-input-inline" style="width: 500px;">
+                    <input type="text" name="tpl_id" autocomplete="off" placeholder="请输入模板ID" class="layui-input" value="{$data.tpl_id}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">模板变量:</label>
+                <div class="layui-input-inline" style="width: 500px;">
+                    <input type="text" name="variable" autocomplete="off" placeholder="例如：模板内容: 你的验证码：${code},只用填写code" class="layui-input" value="{$data.variable}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"></label>
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" lay-filter="submit">保存设置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+
+    nav=$('#nav15');nav.addClass("layui-this");nav.parent().parent().addClass('layui-nav-itemed');
+    $('.block-dis').click(function(){
+        this.hidden=true;
+    });
+</script>
+
+{include file='common/down'}

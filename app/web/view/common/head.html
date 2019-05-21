@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>管理后台</title>
+    <script src="{:config('static')}/static/layui/jquery.js"></script>
+    <link rel="stylesheet" href="{:config('static')}/static/layui/css/layui.css">
+    <link rel="stylesheet" href="{:config('static')}/static/layui/style.css">
+    <script src="{:config('static')}/static/layui/layui.js"></script>
+    <script src="{:config('static')}/static/layui/echarts.min.js" charset="utf-8"></script>
+    <script src="{:config('static')}/static/layui/common.js"></script>
+    <script src="{:config('static')}/static/release/wangEditor.js"></script>
+    <script src="{:config('static')}/static/vue/vue.js"></script>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo" style="color: #fff;"><img src="{$account.logo}" class="layui-nav-img">{$account.name}</div>
+
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="{:we7_url('user/index')}">用户管理</a></li>
+            <li class="layui-nav-item"><a href="{:we7_url('order/appoint')}">预约订单<span class="icon_num"><span id="order_count">0</span></span></a></li>
+
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+
+            <li class="layui-nav-item">
+
+                <a href="javascript:;">
+                    管理员:{$we7_name}
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="../">退出</a></dd>
+
+                </dl>
+            </li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item"><a href="{:we7_url('index/index')}">首页</a></li>
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;">基本设置</a>
+                    <dl class="layui-nav-child">
+                        <dd id="nav1"><a href="{:we7_url('banner/index')}">轮播图</a></dd>
+                        <dd id="nav2"><a href="{:we7_url('article/index')}">公告管理</a></dd>
+                        <dd id="nav14"><a href="{:we7_url('article/clause')}">条款协议</a></dd>
+                        <dd id="nav3"><a href="{:we7_url('wechat_app/index')}">支付配置</a></dd>
+                        <dd id="nav15"><a href="{:we7_url('sms_setting/index')}">短信配置</a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a href="javascript:;">订单管理</a>
+                    <dl class="layui-nav-child">
+                        <dd id="nav4"><a href="{:we7_url('order/index')}">全部订单</a></dd>
+                        <dd id="nav5"><a href="{:we7_url('order/pending')}">待支付订单</a></dd>
+                        <dd id="nav6"><a href="{:we7_url('order/appoint')}">预约订单</a></dd>
+                        <dd id="nav7"><a href="{:we7_url('order/serve')}">服务订单</a></dd>
+                        <dd id="nav8"><a href="{:we7_url('order/end')}">完成订单</a></dd>
+                        <dd id="nav9"><a href="{:we7_url('order/refund')}">退款订单</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;">分类管理</a>
+                    <dl class="layui-nav-child">
+                        <dd id="nav10"><a href="{:we7_url('classify/add')}">添加分类</a></dd>
+                        <dd id="nav11"><a href="{:we7_url('classify/index')}">分类列表</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">用户管理</a>
+                    <dl class="layui-nav-child">
+                        <dd id="nav12"><a href="{:we7_url('user/index')}">用户列表</a></dd>
+                        <dd id="nav13"><a href="{:we7_url('user/address')}">收货地址</a></dd>
+                    </dl>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>

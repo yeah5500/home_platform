@@ -1,0 +1,44 @@
+{include file='common/head'}
+
+<style>
+
+
+</style>
+<div class="layui-body">
+    <blockquote class="layui-elem-quote layui-text" style="border-left:none;">
+        添加公告
+    </blockquote>
+    <!-- 内容主体区域 -->
+    <div style="padding: 15px;">
+        <form class="layui-form" method="post" action="{:we7_url('article/add')}">
+            <div class="layui-form-item">
+                <label class="layui-form-label">标题:</label>
+                <div class="layui-input-inline" style="width: 500px;">
+                    <input type="text" value="{$data.title}" name="title" autocomplete="off" placeholder="请输入" class="layui-input" >
+                    <input type="hidden" value="{$data.genre}" name="genre">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">内容:</label>
+                <div class="layui-input-inline" style="width: 800px;">
+                    <div id="editor" style="width: 800px;">{$data.content}</div>
+                    <textarea id="text" style="display: none;" name="content"></textarea>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <label class="layui-form-label"></label>
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" lay-filter="submit">保存</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    nav=$('#nav14');nav.addClass("layui-this");nav.parent().parent().addClass('layui-nav-itemed');
+
+</script>
+
+{include file='common/down'}

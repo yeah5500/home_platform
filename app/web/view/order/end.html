@@ -1,0 +1,203 @@
+{include file='common/head'}
+
+
+<div class="layui-card" id="app">
+    <div class="layui-body">
+        <blockquote class="layui-elem-quote layui-text" style="border-left:none;">
+            待支付订单
+        </blockquote>
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="layadmin-userfront-formlist">
+            <div class="layui-form-item">
+                <form action="{:we7_url('order/serve')}">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">关键字搜索</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="search" placeholder="订单号,微信名称,电话,类目" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <button class="layui-btn layuiadmin-btn-useradmin" lay-submit lay-filter="search">
+                            <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                            搜索
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- 内容主体区域 -->
+
+        <div class="layui-card-body"  style="min-height: 700px;">
+
+            <table class="layui-table">
+                <thead>
+                <tr>
+
+                    <th>ID</th>
+                    <th>订单号</th>
+                    <th>微信名称</th>
+                    <th>头像</th>
+                    <th>姓名</th>
+                    <th>预约手机</th>
+
+
+                    <th>预约类目</th>
+
+
+
+                    <th>服务人员</th>
+                    <th>服务电话</th>
+                    <th>服务时间</th>
+                    <th>支付金额</th>
+                    <th>完成时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {volist name='data' id='vo'}
+                <tr>
+                    <td>{$vo.id}</td>
+                    <td>{$vo.order_no}</td>
+                    <td>{$vo.nickname}</td>
+                    <td><img src="{$vo.avatar_url}" style="width: 50px;height: 50px"></td>
+                    <td>{$vo.username}({$vo.sex==1?'先生':'女士'})</td>
+                    <td>{$vo.phone}</td>
+
+                    <td>{$vo.title}</td>
+
+                    <td>{$vo.serve_name}</td>
+                    <td>{$vo.serve_mobile}</td>
+                    <td>{$vo.serve_time}</td>
+                    <td>{$vo.price==0?'<span style="color: red;">免费预约</span>':'<span style="color: green;">'.$vo.price.'元</span>'}</td>
+                    <td>{$vo.serve_time}</td>
+                    <td>
+                        <button class="layui-btn  layui-btn-sm" @click="open({$vo.id})">
+                            详情
+                        </button>
+
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+
+            </table>
+            <div style="text-align: center">
+                <div class="layui-box layui-laypage layui-laypage-default" style="display: block;margin-top: 20px;height: 35px;">
+                    {$data->render()}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="display: none;" id="content" >
+        <table  class="layui-table" style="margin: auto;">
+            <thead>
+            <tr>
+                <th  colspan="4">订单号:{{data.order_no}}</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>用户昵称:</td>
+                <td>{{data.nickname}}</td>
+                <td rowspan="2">微信头像:</td>
+                <td rowspan="2"><img v-if="data.avatar_url" v-bind:src="data.avatar_url" width="40" height="40"></td>
+            </tr>
+            <tr>
+                <td>联系人:</td>
+                <td>{{data.username}}({{data.sex==1?'先生':'女士'}})</td>
+            </tr>
+            <tr>
+                <td>联系电话</td>
+                <td>{{data.mobile}}</td>
+                <td>绑定电话</td>
+                <td>{{data.phone}}</td>
+            </tr>
+            <tr>
+                <td>服务人员:</td>
+                <td>{{data.serve_name}}</td>
+                <td>服务人员电话</td>
+                <td>{{data.serve_mobile}}</td>
+            </tr>
+            <tr>
+                <td>服务时间</td>
+                <td>{{data.serve_time}}</td>
+                <td>订单状态:</td>
+                <td v-if="data.status==0" style="color: red">待支付</td>
+                <td v-if="data.status==-1" style="color: red">已取消</td>
+                <td v-if="data.status==1" style="color: red">待接单</td>
+                <td v-if="data.status==2" style="color: red">服务中</td>
+                <td v-if="data.status==3" style="color: green">订单完成</td>
+            </tr>
+            <tr>
+                <td>预约金额:</td>
+                <td><span v-if="data.price==0" style="color: red;">免费预约</span><span v-if="data.price!=0" style="color: green;">{{data.price}}元</span></td>
+                <td>支付状态</td>
+                <td><span v-if="data.is_pay==0" style="color: red;">未支付</span><span v-if="data.is_pay!=0" style="color: green;">已支付</span></td>
+            </tr>
+            <tr>
+                <td>下单时间:</td>
+                <td>{{data.create_time}}</td>
+                <td>支付时间</td>
+                <td>{{data.pay_time=='1970-01-01 08:00'?'':data.pay_time}}</td>
+            </tr>
+            <tr>
+                <td>预约时间</td>
+                <td colspan="3">{{data.booking_time}}</td>
+            </tr>
+            <tr>
+                <td>预约地址</td>
+                <td colspan="3">{{data.address}}</td>
+            </tr>
+            <tr>
+                <td>地址备注:</td>
+                <td colspan="3">{{data.detail_info?'无':data.detail_info}}</td>
+            </tr>
+            <tr>
+                <td>预约项目</td>
+                <td colspan="3">{{data.title}}</td>
+            </tr>
+            <tr>
+                <td>下单备注:</td>
+                <td colspan="3">{{data.detail_info?'无':data.detail_info}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+
+    nav=$('#nav8');nav.addClass("layui-this");nav.parent().parent().addClass('layui-nav-itemed');
+    new Vue({
+        'el':'#app',
+        data:{
+            data:{
+
+            },
+        },
+        mounted:function(){
+
+        },
+        methods:{
+            open:function(id){
+                var _this=this;
+                $.post('{:we7_url("order/details")}',{id:id},function(res){
+                    if(res.code===0){
+                        _this.data=res.data;
+                        layer.open({
+                            type: 1,
+                            title:'订单详情',
+                            area: ['650px', '600px'], //宽高
+                            content: $('#content')
+                        });
+                    }else{
+                        layer.msg('你所查看的内容不存在');
+                    }
+                },'json');
+
+            }
+        }
+    })
+</script>
+
+{include file='common/down'}

@@ -1,0 +1,72 @@
+{include file='common/head'}
+
+<style>
+
+    .layui-form-label{
+        width: 125px;text-align: left;
+    }
+</style>
+<div class="layui-body">
+    <blockquote class="layui-elem-quote layui-text" style="border-left:none;">
+        支付配置
+    </blockquote>
+    <!-- 内容主体区域 -->
+    <div style="padding: 15px;">
+        <form class="layui-form" method="post" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">小程序appID:</label>
+                <div class="layui-input-inline" style="width: 500px;">
+                    <input type="text" name="appid" autocomplete="off" placeholder="请输入" class="layui-input" value="{$data.appid}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">小程序appSecret:</label>
+                <div class="layui-input-inline" style="width: 500px;">
+                    <div class="block-dis">已隐藏点击查看或编辑</div>
+                    <input type="text" name="appsecret" autocomplete="off" placeholder="请输入" class="layui-input" value="{$data.appsecret}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">支付商户号:</label>
+                <div class="layui-input-inline" style="width: 500px;">
+
+                    <input type="text" name="mch_id" autocomplete="off" placeholder="请输入支付商户号" class="layui-input" value="{$data.mch_id}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">支付秘钥:</label>
+                <div class="layui-input-inline" style="width: 500px;">
+                    <div class="block-dis">已隐藏点击查看或编辑</div>
+                    <input type="text" name="mch_key" autocomplete="off" placeholder="请输入支付秘钥" class="layui-input" value="{$data.mch_key}">
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">微信支付apiclient_cert.pem:</label>
+                <div class="layui-input-block">
+                    <textarea placeholder="为保证安全性, 不显示证书内容. 若要修改, 请直接输入" class="layui-textarea" name="ssl_cer"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">微信支付apiclient_key.pem:
+                </label>
+                <div class="layui-input-block">
+                    <textarea placeholder="为保证安全性, 不显示证书内容. 若要修改, 请直接输入" class="layui-textarea" name="ssl_key"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"></label>
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" lay-filter="submit">保存设置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    nav=$('#nav3');nav.addClass("layui-this");nav.parent().parent().addClass('layui-nav-itemed');
+    $('.block-dis').click(function(){
+        this.hidden=true;
+    });
+</script>
+
+{include file='common/down'}
